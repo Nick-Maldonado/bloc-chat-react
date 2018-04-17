@@ -5,11 +5,26 @@ class RoomList extends Component {
     super(props);
 
     this.state = {
-      rooms: []
+      rooms: [],
+      newRoom: ''
     };
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
   }
+
+  createRoom(e) {
+    e.preventDefault();
+    this.roomsRef.push({
+      name: this.state.newRoom
+    });
+    this.setState({newRoom: ''});
+  }
+
+  handleNewRoomName(e) {
+    this.setState({ newRoom: e.target.value });
+  }
+
+
   componentDidMount() {
     this.roomsRef.on('child_added', snapshot => {
       const room = snapshot.val();
@@ -28,6 +43,10 @@ class RoomList extends Component {
     return (
       <section className='chat-rooms'>
         <h1>Bloc Chat</h1>
+        <form className='new-room' onSubmit={ (e) => this.createRoom(e)}>
+          <input type="text" placeholder="Enter a new room name" value={ this.state.newRoom } onChange={ (e) => this.handleNewRoomName(e) } />
+          <input type="submit" />
+        </form>
         <ul className='rooms-list'>
           {roomsList}
         </ul>
