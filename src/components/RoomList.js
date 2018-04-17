@@ -17,6 +17,23 @@ class RoomList extends Component {
       this.setState({ rooms: this.state.rooms.concat( room ) })
     });
   }
+
+  render() {
+    const rooms = this.state.rooms;
+    const roomsList = ( 
+      this.state.rooms.map( (room) =>
+         <li className={room.name}>{room.name}</li>
+      )
+    );
+    return (
+      <section className='chat-rooms'>
+        <h1>Bloc Chat</h1>
+        <ul className='rooms-list'>
+          {roomsList}
+        </ul>
+      </section>
+    );
+  }
 }
 
 export default RoomList;
