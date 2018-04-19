@@ -34,12 +34,12 @@ class RoomList extends Component {
   }
 
   render() {
-    const rooms = this.state.rooms;
     const roomsList = ( 
-      this.state.rooms.map( (room) =>
-         <li className={room.name}>{room.name}</li>
+      this.state.rooms.map( (room, index) =>
+        <li id={'room' + index} key={'room' + index}>{room.name}</li>
       )
     );
+
     return (
       <section className='chat-rooms'>
         <h1>Bloc Chat</h1>
