@@ -12,15 +12,14 @@ class MessageList extends Component {
   }  
 
   componentDidMount() {
-    console.log(this.props.activeRoom)
+    console.log(this.props.activeRoom) // this doesn't work?
     this.messagesRef.on('child_added', snapshot => {
       const message = snapshot.val();
       // console.log(message.roomId);
       if (message.roomId.toString() === this.props.activeRoom.toString()) {
         console.log(message)
+        // this.setState({ messages: this.state.messages.concat( message ) });
       }
-      // message.key = snapshot.key
-      // this.setState({ messages: this.state.messages.concat( message ) });
     });
   }
 
