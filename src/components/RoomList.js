@@ -36,7 +36,7 @@ class RoomList extends Component {
   render() {
     const roomsList = ( 
       this.state.rooms.map( (room, index) =>
-        <li id={'room' + index} key={'room' + index}>{room.name}</li>
+        <li id={room.key} key={room.key} onClick={ () => this.props.setActiveRoom(room.key)}>{room.name}</li>
       )
     );
 
