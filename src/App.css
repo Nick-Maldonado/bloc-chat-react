@@ -34,6 +34,7 @@
   width: 200px;
   background-color: gray;
   position: fixed;
+  border-right: solid 1px;
 }
 
 h1 {
@@ -49,6 +50,7 @@ h1 {
 
 .rooms-list li {
   border-style: solid;
-  border-width: 1px;
+  border-width: 1px 0px;
   margin: 5px 0px;
+  background-color: rgb(221, 221, 221);
 }
