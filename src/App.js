@@ -32,10 +32,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <main>
         <section className="sidebar">
           <RoomList firebase={firebase } setActiveRoom={(roomKey) => this.setActiveRoom(roomKey)} />
         </section>
-        <main>
           <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
         </main>
       </div>

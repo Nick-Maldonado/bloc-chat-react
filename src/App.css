@@ -54,3 +54,24 @@ h1 {
   margin: 5px 0px;
   background-color: rgb(221, 221, 221);
 }
+
+/* ======================Message List====================== */
+
+.chat-messages {
+  margin-left: 251px;
+  text-align: left;
+  margin-right: 50px;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.message-username {
+  display: inline-block;
+}
+
+.message-sentAt {
+  display: inline-block;
+  float: right;
+}
