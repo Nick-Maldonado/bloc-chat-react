@@ -27,6 +27,23 @@
   to { transform: rotate(360deg); }
 }
 
+/* ====================Sign in/out===================== */
+
+.log-in-out {
+  text-align: right;
+  background-color: #7e95b9;
+  margin-left: 201px;
+}
+
+.log-in-out div {
+  display: inline-block;
+}
+
+.log-in-out button {
+  margin: 0 2px;
+  width: 100px;
+}
+
 /* ====================Left Side Bar=================== */
 
 .chat-rooms {
@@ -64,7 +81,8 @@ h1 {
 }
 
 .message {
-  margin-bottom: 10px;
+  margin-top: 10px;
+  border-bottom: solid 1px;  
 }
 
 .message-username {
