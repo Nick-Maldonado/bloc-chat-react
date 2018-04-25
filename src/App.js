@@ -21,7 +21,7 @@ class App extends Component {
 
     this.state = {
       activeRoom: '',
-      user: 'guest'
+      user: null
     };
 
     this.roomsRef = firebase.database().ref('rooms');
