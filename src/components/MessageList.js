@@ -5,11 +5,29 @@ class MessageList extends Component {
     super(props);
 
     this.state = {
-      messages: []
+      messages: [],
+      newMessage: null
     };
 
     this.messagesRef = this.props.firebase.database().ref('messages');
   }  
+
+  handleNewMessage(e) {
+    this.setState({ newMessage: e.target.value });
+    console.log(this.state.newMessage);
+  }
+
+  createMessage(e) {
+    e.preventDefault();
+    if (this.state.newMessage && this.props.user) {
+      this.messagesRef.push({
+        username: this.props.user.displayName,
+        content: this.state.newMessage,
+        sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+        roomId: this.props.activeRoom
+      })}      
+    this.setState({ newMessage: null });
+  }
 
   componentDidMount() {
     this.messagesRef.on('child_added', snapshot => {
@@ -34,6 +52,15 @@ class MessageList extends Component {
     return(
       <section className="chat-messages">
         {messages}
+        {
+          this.props.activeRoom && this.props.user ?
+          <form id="input-box" onSubmit={ (e) => this.createMessage(e) }>
+            <input className="input-text" type="text" value={this.state.newMessage ? this.state.newMessage : ''} placeholder="Type your message here..." onChange={ (e) =>  this.handleNewMessage(e) } />
+            <input type="submit" value="Send" />
+          </form>
+          :
+          ''
+        }
       </section>
     );
   }
