@@ -99,3 +99,7 @@ h1 {
   bottom: 0px;
   height: 50px;
 }
+
+input[type="submit"] {
+  visibility: hidden;
+}

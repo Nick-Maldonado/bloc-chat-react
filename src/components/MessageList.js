@@ -29,6 +29,32 @@ class MessageList extends Component {
     this.setState({ newMessage: null });
   }
 
+  convertTimestamp(timestamp) {
+    let d = new Date(timestamp),
+      yyyy = d.getFullYear(),
+      mm = ('0' + (d.getMonth() +1)).slice(-2),
+      dd = ('0' + d.getDate()).slice(-2),
+      hh = d.getHours(),
+      h = hh,
+      min = ('0' + d.getMinutes()).slice(-2),
+      ampm = 'AM',
+      time;
+
+      if (hh > 12) {
+        h = hh - 12;
+        ampm = 'PM'
+      } else if (hh === 12) {
+        h = 12;
+        ampm = 'PM';
+      } else if (hh == 0) {
+        h = 12;
+      }
+
+      time = h + ':' + min + ' ' + ampm + ' on ' + mm + '-' + dd + '-' + yyyy + '.'
+
+      return time;
+  }
+
   componentDidMount() {
     this.messagesRef.on('child_added', snapshot => {
       const message = snapshot.val();
@@ -43,7 +69,7 @@ class MessageList extends Component {
       this.state.messages.filter(message => message.roomId === this.props.activeRoom).map( (message, index) =>
         <div className="message" key={message.key}>
           <div className="message-username">{message.username}:</div>
-          <div className="message-sentAt"> Sent at {message.sentAt}</div>
+          <div className="message-sentAt"> Sent at {this.convertTimestamp(message.sentAt)}</div>
           <div className="message-content">{message.content}</div>
         </div>
       )
